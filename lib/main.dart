@@ -151,7 +151,7 @@ class _MyBodyState extends State<Body> {
                       );
                       showSnackbar("ADVERTISING: $a");
                     } catch (exception) {
-                      showSnackbar(exception);
+                      showSnackbar("AdvitersingError: $exception");
                     }
                   },
                 ),
@@ -199,7 +199,7 @@ class _MyBodyState extends State<Body> {
                       );
                       showSnackbar("DISCOVERING: $a");
                     } catch (e) {
-                      showSnackbar(e);
+                      showSnackbar("DISCOVERINGError: $e");
                     }
                   },
                 ),
