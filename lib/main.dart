@@ -174,41 +174,21 @@ class _MyBodyState extends State<Body> {
                         strategy,
                         onEndpointFound: (id, name, serviceId) {
                           // show sheet automatically to request connection
-                          showModalBottomSheet(
-                            context: context,
-                            builder: (builder) {
-                              return Center(
-                                child: Column(
-                                  children: <Widget>[
-                                    Text("id: $id"),
-                                    Text("Name: $name"),
-                                    Text("ServiceId: $serviceId"),
-                                    ElevatedButton(
-                                      child: const Text("Request Connection"),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                        Nearby().requestConnection(
-                                          userName,
-                                          id,
-                                          onConnectionInitiated: (id, info) {
-                                            onConnectionInit(id, info);
-                                          },
-                                          onConnectionResult: (id, status) {
-                                            showSnackbar(status);
-                                          },
-                                          onDisconnected: (id) {
-                                            setState(() {
-                                              endpointMap.remove(id);
-                                            });
-                                            showSnackbar(
-                                                "Disconnected from: ${endpointMap[id]!.endpointName}, id $id");
-                                          },
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              );
+                          Nearby().requestConnection(
+                            userName,
+                            id,
+                            onConnectionInitiated: (id, info) {
+                              onConnectionInit(id, info);
+                            },
+                            onConnectionResult: (id, status) {
+                              showSnackbar(status);
+                            },
+                            onDisconnected: (id) {
+                              setState(() {
+                                endpointMap.remove(id);
+                              });
+                              showSnackbar(
+                                  "Disconnected from: ${endpointMap[id]!.endpointName}, id $id");
                             },
                           );
                         },
